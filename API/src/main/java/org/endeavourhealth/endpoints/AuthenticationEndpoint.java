@@ -41,8 +41,6 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
 
         LOG.info("Auth getToken API request received ");
 
-        System.out.println(authBody.getClientSecret());
-
         clearLogbackMarkers();
 
         return processGetTokenRequest(authBody);
