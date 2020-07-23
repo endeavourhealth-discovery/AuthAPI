@@ -9,7 +9,8 @@ phases:
     commands:
       - chmod +x build.sh
       - echo Main build started on `date`
-      - ./build.sh mvn -B API/pom.xml deploy
+      - cd API
+      - build.sh mvn -B deploy
       - echo Analysis started on `date`
       - mvn sonar:sonar
   post_build:
@@ -20,6 +21,5 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - build.sh
     - API/target/AuthAPI-1.0-SNAPSHOT/**/*
 
