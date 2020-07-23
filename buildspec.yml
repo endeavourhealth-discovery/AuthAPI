@@ -7,7 +7,7 @@ phases:
       - echo $IP of CodeBuild Instance
   build:
     commands:
-      - chmod +x build.sh
+      - chmod +x API/build.sh
       - echo Main build started on `date`
       - cd API
       - build.sh mvn -B deploy
