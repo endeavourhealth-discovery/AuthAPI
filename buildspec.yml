@@ -9,7 +9,7 @@ phases:
     commands:
       - chmod +x aws_scripts/build.sh
       - echo Main build started on `date`
-      - aws_scripts/build.sh mvn -B deploy
+      - build.sh mvn -B deploy
       - echo Analysis started on `date`
       - mvn sonar:sonar
   post_build:
@@ -20,6 +20,6 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - aws_scripts/**/*
+    - build.sh
     - API/target/AuthAPI-1.0-SNAPSHOT/**/*
 
