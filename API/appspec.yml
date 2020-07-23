@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /target/API-0.0.1
-    destination: //opt/tomcat/webapps/data-sharing-manager
+    destination: //opt/tomcat/webapps/authAPI
 hooks:
   BeforeInstall:
     - location: cleanup
