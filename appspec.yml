@@ -5,6 +5,6 @@ files:
     destination: //opt/tomcat/webapps/authAPI
 hooks:
   BeforeInstall:
-    - location: cleanup
+    - location: API/cleanup
       timeout: 300
       runas: root

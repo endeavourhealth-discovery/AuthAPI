@@ -19,5 +19,6 @@ phases:
 artifacts:
   files:
     - appspec.yml
+    - API/cleanup
     - API/target/AuthAPI-1.0-SNAPSHOT/**/*
 
