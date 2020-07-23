@@ -24,5 +24,5 @@ artifacts:
   files:
     - appspec.yml
     - aws_scripts/**/*
-    - target/AuthAPI-1.0-SNAPSHOT/**/*
+    - API/target/AuthAPI-1.0-SNAPSHOT/**/*
 
