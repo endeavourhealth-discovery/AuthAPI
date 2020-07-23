@@ -10,7 +10,7 @@ phases:
       - chmod +x API/build.sh
       - echo Main build started on `date`
       - cd API
-      - build.sh mvn -B deploy
+      - ./build.sh mvn -B deploy
       - echo Analysis started on `date`
       - mvn sonar:sonar
   post_build:
