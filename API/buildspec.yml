@@ -20,7 +20,6 @@ phases:
       - IP=$(curl http://checkip.amazonaws.com)/32
       - echo $IP of CodeBuild Instance
       - echo Packaging application
-      - cd ../API
       - zip -r api.zip appspec.yml cleanup permissions target/API-0.0.1/
       - mv api.zip api
       - echo Build completed on `date`
