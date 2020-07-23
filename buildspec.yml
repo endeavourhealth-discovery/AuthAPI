@@ -11,8 +11,6 @@ phases:
       - echo Main build started on `date`
       - cd API
       - ./build.sh mvn -B deploy
-      - echo Analysis started on `date`
-      - mvn sonar:sonar
   post_build:
     commands:
       - IP=$(curl http://checkip.amazonaws.com)/32
