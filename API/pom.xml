@@ -161,6 +161,31 @@
         <!-- End Keycloak -->
     </dependencies>
 
+    <repositories>
+        <repository>
+            <snapshots />
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>http://maven.endeavourhealth.net:8081/artifactory/libs-snapshot</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>libs-release</name>
+            <url>http://maven.endeavourhealth.net:8081/artifactory/libs-release</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>maven.endeavourhealth.org-snapshots</name>
+            <url>http://maven.endeavourhealth.net:8081/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
