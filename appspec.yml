@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /target/API-0.0.1
+  - source: API/target/AuthAPI-1.0-SNAPSHOT
     destination: //opt/tomcat/webapps/authAPI
 hooks:
   BeforeInstall:
