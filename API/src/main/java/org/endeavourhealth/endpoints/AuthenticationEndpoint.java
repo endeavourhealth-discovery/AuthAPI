@@ -54,8 +54,10 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
     private Response processGetTokenRequest(UserAuth authBody) {
         try {
             Client client = ClientBuilder.newClient();
-            String url = "https://devauth.discoverydataservice.net/";
-            String path = "auth/realms/endeavour2/protocol/openid-connect/token";
+            KeycloakConfig kc= getConfig();
+
+            String url = kc.getAuthServerUrl();
+            String path = kc.getRpath();
 
             WebTarget target = client.target(url).path(path);
 
@@ -91,16 +93,18 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
                 throw new RuntimeException("Keycloak error: "+ex.getMessage());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Resource error:" + e);
         }
     }
 
     private KeycloakConfig getConfig() throws IOException {
-        JsonNode jsonnode =  ConfigManager.getConfigurationAsJson("database","authAPI");
+        JsonNode jsonnode =  ConfigManager.getConfigurationAsJson("keycloak","authAPI");
         KeycloakConfig keycloakConfig = new KeycloakConfig();
         keycloakConfig.setAuthServerUrl(jsonnode.get("auth-server-url").asText());
         keycloakConfig.setRealmPublicKey(jsonnode.get("realm-public-key").asText());
         keycloakConfig.setRealm(jsonnode.get("realm").asText());
+        keycloakConfig.setRpath(jsonnode.get("path").asText());
         return keycloakConfig;
     }
 

@@ -7,7 +7,18 @@ public class KeycloakConfig {
     private String authServerUrl;
     private String sslRequired;
     private String resource;
+
+    public String getRpath() {
+        return rpath;
+    }
+
+    public void setRpath(String rpath) {
+        this.rpath = rpath;
+    }
+
     private boolean publicClient;
+    private String rpath;
+
 
     public String getRealm() {
         return realm;
