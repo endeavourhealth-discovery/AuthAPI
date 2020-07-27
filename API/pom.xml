@@ -57,6 +57,11 @@
             <artifactId>API</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.endeavourhealth.configmanager</groupId>
+            <artifactId>configmanager</artifactId>
+        </dependency>
+
         <!-- Driver for config -->
         <dependency>
             <groupId>mysql</groupId>

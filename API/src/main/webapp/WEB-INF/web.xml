@@ -127,19 +127,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--<filter>
-        <filter-name>AppAccessFilter</filter-name>
-        <filter-class>org.endeavourhealth.coreui.framework.AppAccessFilter</filter-class>
-        <init-param>
-            <param-name>app_name</param-name>
-            <param-value>eds-dsa-manager</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>AppAccessFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
-
     <filter>
         <filter-name>instrumentedFilter</filter-name>
         <filter-class>com.codahale.metrics.servlet.InstrumentedFilter</filter-class>

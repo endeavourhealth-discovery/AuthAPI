@@ -1,12 +1,15 @@
 package org.endeavourhealth.endpoints;
 
 import com.codahale.metrics.annotation.Timed;
+import com.fasterxml.jackson.databind.JsonNode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.apache.http.HttpStatus;
+import org.endeavourhealth.common.config.ConfigManager;
 import org.endeavourhealth.common.security.annotations.RequiresAdmin;
 import org.endeavourhealth.coreui.endpoints.AbstractEndpoint;
+import org.endeavourhealth.models.KeycloakConfig;
 import org.endeavourhealth.models.UserAuth;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,6 +23,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import java.io.IOException;
 
 import static javax.ws.rs.client.Entity.form;
 
@@ -79,7 +84,7 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
                             .entity(jsonobj)
                             .build();
                 } else { // user is not authenticated in Keycloak
-                    throw new RuntimeException("Unauthorized Client: "+authBody.getClientId()+", httpStatus: "+response.getStatus()); // Not authenticated so send 401/403 Unauthorized response to the client
+                    return Response.status(Response.Status.FORBIDDEN).entity("Wrong client credentials").build();
                 }
 
             } catch (Exception ex) {
@@ -88,6 +93,15 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
         } catch (Exception e) {
             throw new RuntimeException("Resource error:" + e);
         }
+    }
+
+    private KeycloakConfig getConfig() throws IOException {
+        JsonNode jsonnode =  ConfigManager.getConfigurationAsJson("database","authAPI");
+        KeycloakConfig keycloakConfig = new KeycloakConfig();
+        keycloakConfig.setAuthServerUrl(jsonnode.get("auth-server-url").asText());
+        keycloakConfig.setRealmPublicKey(jsonnode.get("realm-public-key").asText());
+        keycloakConfig.setRealm(jsonnode.get("realm").asText());
+        return keycloakConfig;
     }
 
 
