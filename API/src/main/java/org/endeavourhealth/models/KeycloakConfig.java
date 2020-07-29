@@ -3,37 +3,16 @@ package org.endeavourhealth.models;
 public class KeycloakConfig {
 
     private String realm;
-    private String realmPublicKey;
+    private String pathPrefix;
     private String authServerUrl;
-    private String sslRequired;
-    private String resource;
+    private String pathSuffix;
 
-    public String getRpath() {
-        return rpath;
+    public String getPathPrefix() {
+        return pathPrefix;
     }
 
-    public void setRpath(String rpath) {
-        this.rpath = rpath;
-    }
-
-    private boolean publicClient;
-    private String rpath;
-
-
-    public String getRealm() {
-        return realm;
-    }
-
-    public void setRealm(String realm) {
-        this.realm = realm;
-    }
-
-    public String getRealmPublicKey() {
-        return realmPublicKey;
-    }
-
-    public void setRealmPublicKey(String realmPublicKey) {
-        this.realmPublicKey = realmPublicKey;
+    public void setPathPrefix(String pathPrefix) {
+        this.pathPrefix = pathPrefix;
     }
 
     public String getAuthServerUrl() {
@@ -44,27 +23,19 @@ public class KeycloakConfig {
         this.authServerUrl = authServerUrl;
     }
 
-    public String getSslRequired() {
-        return sslRequired;
+    public String getPathSuffix() {
+        return pathSuffix;
     }
 
-    public void setSslRequired(String sslRequired) {
-        this.sslRequired = sslRequired;
+    public void setPathSuffix(String pathSuffix) {
+        this.pathSuffix = pathSuffix;
     }
 
-    public String getResource() {
-        return resource;
+    public String getRealm() {
+        return realm;
     }
 
-    public void setResource(String resource) {
-        this.resource = resource;
-    }
-
-    public boolean isPublicClient() {
-        return publicClient;
-    }
-
-    public void setPublicClient(boolean publicClient) {
-        this.publicClient = publicClient;
+    public void setRealm(String realm) {
+        this.realm = realm;
     }
 }

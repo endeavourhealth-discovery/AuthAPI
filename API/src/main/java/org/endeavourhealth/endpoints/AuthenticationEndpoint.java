@@ -56,8 +56,8 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
             Client client = ClientBuilder.newClient();
             KeycloakConfig kc= getConfig();
 
-            String url = kc.getAuthServerUrl();
-            String path = kc.getRpath();
+            String url  = kc.getAuthServerUrl();
+            String path = kc.getPathPrefix()+"/"+kc.getRealm()+"/"+kc.getPathSuffix();
 
             WebTarget target = client.target(url).path(path);
 
@@ -77,13 +77,13 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
                     String loginResponse = response.readEntity(String.class);
                     JSONParser parser = new JSONParser();
 
-                    JSONObject jsonobj = (JSONObject) parser.parse(loginResponse);
-                    jsonobj.remove("refresh_token");
-                    jsonobj.remove("refresh_expires_in");
+                    JSONObject jsonObject = (JSONObject) parser.parse(loginResponse);
+                    jsonObject.remove("refresh_token");
+                    jsonObject.remove("refresh_expires_in");
 
                     return Response
                             .ok()
-                            .entity(jsonobj)
+                            .entity(jsonObject)
                             .build();
                 } else { // user is not authenticated in Keycloak
                     return Response.status(Response.Status.FORBIDDEN).entity("Wrong client credentials").build();
@@ -102,9 +102,9 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
         JsonNode jsonnode =  ConfigManager.getConfigurationAsJson("keycloak","authAPI");
         KeycloakConfig keycloakConfig = new KeycloakConfig();
         keycloakConfig.setAuthServerUrl(jsonnode.get("auth-server-url").asText());
-        keycloakConfig.setRealmPublicKey(jsonnode.get("realm-public-key").asText());
         keycloakConfig.setRealm(jsonnode.get("realm").asText());
-        keycloakConfig.setRpath(jsonnode.get("path").asText());
+        keycloakConfig.setPathPrefix(jsonnode.get("path_prefix").asText());
+        keycloakConfig.setPathSuffix(jsonnode.get("path_suffix").asText());
         return keycloakConfig;
     }
 
