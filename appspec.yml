@@ -1,10 +1,10 @@
 version: 0.0
 os: linux
 files:
-  - source: API/target/AuthAPI-1.0-SNAPSHOT
+  - source: API/target/API-1.0-SNAPSHOT
     destination: //opt/tomcat/webapps/authAPI
 hooks:
   BeforeInstall:
-    - location: API/cleanup
+    - location: aws_scripts/cleanup
       timeout: 300
       runas: root

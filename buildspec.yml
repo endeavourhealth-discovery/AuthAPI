@@ -7,10 +7,9 @@ phases:
       - echo $IP of CodeBuild Instance
   build:
     commands:
-      - chmod +x API/build.sh
-      - echo Main build started on `date`
-      - cd API
-      - ./build.sh mvn -B deploy
+      - echo Build started on `date`
+      - chmod +x aws_scripts/build.sh
+      - aws_scripts/build.sh mvn -B package
   post_build:
     commands:
       - IP=$(curl http://checkip.amazonaws.com)/32
@@ -19,6 +18,6 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - API/cleanup
-    - API/target/AuthAPI-1.0-SNAPSHOT/**/*
+    - aws_scripts/**/*
+    - API/target/API-1.0-SNAPSHOT/**/*
 
