@@ -62,6 +62,7 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
             WebTarget target = client.target(url).path(path);
 
             try {
+                
                 Form form = null;
 
                 form = new Form()
