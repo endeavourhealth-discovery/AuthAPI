@@ -61,6 +61,9 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
 
             WebTarget target = client.target(url).path(path);
 
+
+            LOG.info("Keycloak path :  " + path);
+
             try {
                 
                 Form form = null;
