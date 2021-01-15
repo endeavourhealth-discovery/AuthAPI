@@ -81,6 +81,9 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
                     String loginResponse = response.readEntity(String.class);
                     JSONParser parser = new JSONParser();
 
+
+                    LOG.info("response :  " + loginResponse);
+
                     JSONObject jsonObject = (JSONObject) parser.parse(loginResponse);
                     jsonObject.remove("refresh_token");
                     jsonObject.remove("refresh_expires_in");
