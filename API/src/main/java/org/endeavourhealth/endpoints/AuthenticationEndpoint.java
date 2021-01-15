@@ -61,9 +61,6 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
 
             WebTarget target = client.target(url).path(path);
 
-
-            LOG.info("Keycloak path :  " + url + '/' +  path);
-
             try {
                 
                 Form form = null;
@@ -80,9 +77,6 @@ public final class AuthenticationEndpoint extends AbstractEndpoint {
                 if (response.getStatus() == HttpStatus.SC_OK) { // user is authenticated in keycloak, so get the user's access token
                     String loginResponse = response.readEntity(String.class);
                     JSONParser parser = new JSONParser();
-
-
-                    LOG.info("response :  " + loginResponse);
 
                     JSONObject jsonObject = (JSONObject) parser.parse(loginResponse);
                     jsonObject.remove("refresh_token");
