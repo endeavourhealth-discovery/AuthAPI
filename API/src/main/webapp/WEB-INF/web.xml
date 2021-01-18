@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>HL7v2 API</servlet-name>
+        <servlet-name>AUTH API</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
@@ -32,7 +32,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>HL7v2 API</servlet-name>
+        <servlet-name>AUTH API</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
@@ -61,7 +61,7 @@
     <!-- startup class, initializes config manager -->
     <context-param>
         <param-name>app_id</param-name>
-        <param-value>data-sharing-manager</param-value>
+        <param-value>AUTH-API</param-value>
     </context-param>
     <listener>
         <listener-class>
